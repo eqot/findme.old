@@ -11,12 +11,12 @@ define([
         },
 
         initialize: function () {
-            console.log('Router');
+            // console.log('Router');
             Backbone.history.start();
         },
 
         topView: function () {
-            console.log('topView');
+            // console.log('topView');
 
             new TopView();
         }
