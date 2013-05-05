@@ -3,8 +3,10 @@ define([
     'jquery',
     'backbone',
     'underscore',
-    'text!templates/top.html'
-], function ($, Backbone, _, TopViewTemplate) {
+    'models/map',
+    'text!templates/top.html',
+    'text!templates/link.html'
+], function ($, Backbone, _, Map, TopViewTemplate, LinkTemplate) {
     'use strict';
 
     var TopView = Backbone.View.extend({
@@ -15,6 +17,9 @@ define([
         },
 
         template: _.template(TopViewTemplate),
+        linkTemplate: _.template(LinkTemplate),
+
+        map: null,
 
         initialize: function () {
             // console.log('TopView');
@@ -27,7 +32,23 @@ define([
         },
 
         createMap: function () {
-            console.log('createMap()');
+            // console.log('createMap()');
+
+            this.map = new Map();
+
+            this.listenTo(this.map, 'change', this.onCreated);
+
+            this.map.save();
+        },
+
+        onCreated: function (map) {
+            // console.log('onCreated');
+            // console.log(map);
+
+            var url = location.href + 'map/' + map.get('id');
+            // console.log(url);
+
+            $('#link').html(this.linkTemplate({url: url}));
         }
     });
 
