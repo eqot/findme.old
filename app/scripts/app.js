@@ -1,6 +1,10 @@
 /*global define */
-define([], function () {
+define(['routers/router'], function (Router) {
     'use strict';
 
-    return '\'Allo \'Allo!';
+    var FindMeApp = function () {
+        new Router();
+    };
+
+    return FindMeApp;
 });
