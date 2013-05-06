@@ -1,13 +1,15 @@
 /*global define */
 define([
     'backbone',
-    'views/top'
-], function (Backbone, TopView) {
+    'views/top',
+    'views/map'
+], function (Backbone, TopView, MapView) {
     'use strict';
 
     var Router = Backbone.Router.extend({
         routes: {
-            '': 'topView'
+            '': 'topView',
+            'map/:id': 'mapView'
         },
 
         initialize: function () {
@@ -19,6 +21,12 @@ define([
             // console.log('topView');
 
             new TopView();
+        },
+
+        mapView: function (id) {
+            // console.log('mapView');
+
+            new MapView(null, id);
         }
     });
 

@@ -45,10 +45,12 @@ define([
             // console.log('onCreated');
             // console.log(map);
 
-            var url = location.href + 'map/' + map.get('id');
+            var url = location.href + '#map/' + map.get('id');
             // console.log(url);
 
             $('#link').html(this.linkTemplate({url: url}));
+
+            // Backbone.history.navigate('map/' + map.get('id'), true);
         }
     });
 
